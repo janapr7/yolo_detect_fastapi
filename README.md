@@ -16,8 +16,9 @@ Using YOLOv8l model
 
 Test API example in local:
 _To get detection result as image with bounding box_
-curl -X POST http://localhost:8000/detect/image \ -F "file=@/Users/jana/Documents/Research/Data/nov2024/dataset_v3/images/train/air_mars_byk_st_merq_tsat_b_008.jpg" --output output.jpg
+curl -X POST http://localhost:8000/detect/image \
+ -F "file=@/Users/jana/Documents/Research/Data/nov2024/dataset_v3/images/train/air_mars_byk_st_merq_tsat_b_008.jpg" --output output.jpg
 
 _To get detection result data_
-curl -X POST http://localhost:8000/detect \  
+curl -X POST http://localhost:8000/detect \
  -F "file=@/Users/jana/Documents/Research/Data/nov2024/dataset_v3/images/train/air_mars_byk_st_merq_tsat_b_008.jpg"
