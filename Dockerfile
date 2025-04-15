@@ -1,7 +1,7 @@
 # Use a lightweight Python image
 FROM python:3.9
 # Set the working directory
-WORKDIR /
+WORKDIR /app
 # Copy only the requirements file first (to optimize caching)
 COPY requirements.txt ./
 # Install dependencies
