@@ -4,5 +4,5 @@ python-multipart
 opencv-python
 pillow
 ultralytics
-torch==2.1.0+cpu
+torch
 --extra-index-url https://download.pytorch.org/whl/cpu
