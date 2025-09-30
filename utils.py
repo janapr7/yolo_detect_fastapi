@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 import io
 
-model = YOLO("model/model_v1.pt")
+model = YOLO("model/model_v2.pt")
 
 def detect_objects(image_bytes: bytes):
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
