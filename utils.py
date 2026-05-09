@@ -28,4 +28,12 @@ def detect_objects(image_bytes: bytes):
             "bbox": [x1, y1, x2, y2]
         })
 
-    return annotated_img_bytes, boxes_info
+    speed = pred.speed
+    timing = {
+        "preprocess_ms": round(speed.get("preprocess", 0.0), 2),
+        "inference_ms": round(speed.get("inference", 0.0), 2),
+        "postprocess_ms": round(speed.get("postprocess", 0.0), 2),
+    }
+    timing["total_ms"] = round(sum(timing.values()), 2)
+
+    return annotated_img_bytes, boxes_info, timing

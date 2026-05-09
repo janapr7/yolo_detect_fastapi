@@ -23,15 +23,23 @@ async def health_check():
 @app.post("/detect")
 async def detect(file: UploadFile = File(...)):
     image_bytes = await file.read()
-    annotated_img_bytes, boxes_info = detect_objects(image_bytes)
+    annotated_img_bytes, boxes_info, timing = detect_objects(image_bytes)
 
     return {
-        "boxes": boxes_info
+        "boxes": boxes_info,
+        "timing": timing,
     }
 
 @app.post("/detect/image")
 async def detect_with_image(file: UploadFile = File(...)):
     image_bytes = await file.read()
-    annotated_img_bytes, boxes_info = detect_objects(image_bytes)
+    annotated_img_bytes, boxes_info, timing = detect_objects(image_bytes)
 
-    return StreamingResponse(io.BytesIO(annotated_img_bytes), media_type="image/jpeg")
+    return StreamingResponse(
+        io.BytesIO(annotated_img_bytes),
+        media_type="image/jpeg",
+        headers={
+            "X-Inference-Ms": str(timing["inference_ms"]),
+            "X-Total-Ms": str(timing["total_ms"]),
+        },
+    )
